@@ -4,8 +4,8 @@ import { useSearchParams } from "react-router-dom";
 const CHECKOUT_BASE_URL = "https://checkout.centerpag.com/pay/PPU38CQ7B8I";
 
 // Ajuste esses valores conforme necessário para esconder áreas acima/abaixo
-const TOP_CROP = 0;    // px para esconder no topo (ex: 100 para esconder header)
-const BOTTOM_CROP = 0; // px para esconder no final
+const TOP_CROP = 160;   // px escondidos no topo (acima do "2 PAYMENT")
+const BOTTOM_CROP = 300; // px escondidos no final (abaixo do "Buy now")
 
 const Index = () => {
   const [searchParams] = useSearchParams();
