@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 
 const CHECKOUT_BASE_URL = "https://checkout.cooud.com/01KH52NHC02W9XP6SGHQ1DAMXK";
 
-const TOP_CROP = 330;
+const TOP_CROP = 280;
 const BOTTOM_CROP = 300;
 
 const Index = () => {
