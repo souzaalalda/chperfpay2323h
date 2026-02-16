@@ -1,57 +1,31 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
-import { fetchRegion, isRestricted } from "@/lib/region";
 
 const CHECKOUT_BASE_URL = "https://checkout.centerpag.com/pay/PPU38CQ7B8I";
 
-const TOP_CROP = 302;
-const BOTTOM_CROP = 9500;
+// Ajuste esses valores conforme necessário para esconder áreas acima/abaixo
+const TOP_CROP = 302; // px escondidos no topo (acima do "2 PAYMENT")
+const BOTTOM_CROP = 9500; // px escondidos no final (abaixo do "Buy now")
 
 const Index = () => {
   const [searchParams] = useSearchParams();
   const containerRef = useRef<HTMLDivElement>(null);
-  const [locked, setLocked] = useState<boolean | null>(null);
 
+  // Repassa todos os query params para o checkout
   const checkoutUrl = (() => {
     const params = searchParams.toString();
     return params ? `${CHECKOUT_BASE_URL}?${params}` : CHECKOUT_BASE_URL;
   })();
 
   useEffect(() => {
-    fetchRegion().then((code) => setLocked(isRestricted(code)));
-  }, []);
-
-  useEffect(() => {
-    if (locked) {
-      document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-    }
+    // Bloqueia scroll da página principal
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
     };
-  }, [locked]);
-
-  if (locked === null) {
-    return <div style={{ background: "#000", position: "fixed", inset: 0 }} />;
-  }
-
-  if (!locked) {
-    return (
-      <div style={{ width: "100vw", minHeight: "100vh" }}>
-        <iframe
-          src={checkoutUrl}
-          title="Checkout"
-          style={{ width: "100%", height: "100vh", border: "none" }}
-          allow="payment *; clipboard-write"
-          sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation allow-popups-to-escape-sandbox"
-        />
-      </div>
-    );
-  }
+  }, []);
 
   return (
     <div
