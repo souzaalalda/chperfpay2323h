@@ -5,7 +5,6 @@ import tiktokLogo from "@/assets/tiktok-logo.png";
 const CHECKOUT_BASE_URL = "https://checkout.cooud.com/01KH52NHC02W9XP6SGHQ1DAMXK";
 
 const TOP_CROP = 302;
-const BOTTOM_CROP = 5000;
 
 const Index = () => {
   const [searchParams] = useSearchParams();
@@ -16,24 +15,12 @@ const Index = () => {
     return params ? `${CHECKOUT_BASE_URL}?${params}` : CHECKOUT_BASE_URL;
   })();
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-    };
-  }, []);
-
   return (
     <div
       ref={containerRef}
       style={{
-        position: "fixed",
-        inset: 0,
-        overflow: "hidden",
-        width: "100vw",
-        height: "100vh",
+        width: "100%",
+        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         backgroundColor: "#f5f5f5",
@@ -53,7 +40,6 @@ const Index = () => {
           borderBottom: "1px solid #eee",
         }}
       >
-        {/* Logo TikTok */}
         <img
           src={tiktokLogo}
           alt="TikTok"
@@ -63,8 +49,6 @@ const Index = () => {
             marginBottom: "24px",
           }}
         />
-
-        {/* Card de resumo */}
         <div
           style={{
             width: "90%",
@@ -138,7 +122,7 @@ const Index = () => {
             top: `-${TOP_CROP}px`,
             left: 0,
             width: "100%",
-            height: `calc(100% + ${TOP_CROP + BOTTOM_CROP}px)`,
+            height: `calc(100% + ${TOP_CROP}px)`,
             border: "none",
           }}
           allow="payment *; clipboard-write"
