@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const CHECKOUT_BASE_URL = "https://checkout.cooud.com/01KM1T61B2SNEXF045XRB31JPV";
@@ -6,14 +6,31 @@ const TOP_CROP = 170;
 
 const Index = () => {
   const [searchParams] = useSearchParams();
+  const iframeContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const original = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     document.documentElement.style.overflow = "hidden";
+
+    const blockScroll = (e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+    };
+
+    const container = iframeContainerRef.current;
+    if (container) {
+      container.addEventListener("wheel", blockScroll, { passive: false });
+      container.addEventListener("touchmove", blockScroll, { passive: false });
+    }
+
     return () => {
       document.body.style.overflow = original;
       document.documentElement.style.overflow = "";
+      if (container) {
+        container.removeEventListener("wheel", blockScroll);
+        container.removeEventListener("touchmove", blockScroll);
+      }
     };
   }, []);
 
@@ -97,6 +114,7 @@ const Index = () => {
 
       {/* Iframe do checkout */}
       <div
+        ref={iframeContainerRef}
         style={{
           position: "relative",
           flex: 1,
