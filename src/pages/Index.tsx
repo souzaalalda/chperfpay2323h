@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const CHECKOUT_BASE_URL = "https://checkout.cooud.com/01KM1T61B2SNEXF045XRB31JPV";
@@ -5,6 +6,16 @@ const TOP_CROP = 170;
 
 const Index = () => {
   const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = original;
+      document.documentElement.style.overflow = "";
+    };
+  }, []);
 
   const checkoutUrl = (() => {
     const params = searchParams.toString();
@@ -15,10 +26,11 @@ const Index = () => {
     <div
       style={{
         width: "100%",
-        minHeight: "100vh",
+        height: "100vh",
         display: "flex",
         flexDirection: "column",
         backgroundColor: "#f8f8f8",
+        overflow: "hidden",
       }}
     >
       {/* Header com logo GoFundMe e informacoes */}
@@ -112,7 +124,7 @@ const Index = () => {
             bottom: 0,
             left: 0,
             width: "100%",
-            height: "180px",
+            height: "150px",
             backgroundColor: "#ffffff",
             zIndex: 10,
             pointerEvents: "none",
