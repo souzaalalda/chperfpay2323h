@@ -18,10 +18,10 @@ const Index = () => {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: "#f5f5f5",
+        backgroundColor: "#f8f8f8",
       }}
     >
-      {/* Header com logo e resumo */}
+      {/* Header com logo GoFundMe e informacoes */}
       <div
         style={{
           width: "100%",
@@ -29,73 +29,55 @@ const Index = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          paddingTop: "28px",
-          paddingBottom: "24px",
+          paddingTop: "24px",
+          paddingBottom: "20px",
           backgroundColor: "#fff",
-          borderBottom: "1px solid #eee",
+          borderBottom: "1px solid #e5e5e5",
         }}
       >
-        <img
-          src="/tiktok-logo.png"
-          alt="TikTok"
-          style={{
-            height: "32px",
-            objectFit: "contain",
-            marginBottom: "24px",
-          }}
-        />
         <div
           style={{
             width: "90%",
-            maxWidth: "400px",
-            backgroundColor: "#fafafa",
-            borderRadius: "12px",
-            padding: "20px 24px",
-            border: "1px solid #f0f0f0",
+            maxWidth: "420px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "16px",
           }}
         >
-          <span
+          <img
+            src="/gofundme-logo.png"
+            alt="GoFundMe"
             style={{
-              fontSize: "11px",
-              fontWeight: 600,
-              letterSpacing: "0.08em",
-              color: "#6b7280",
-              textTransform: "uppercase",
+              height: "28px",
+              objectFit: "contain",
             }}
-          >
-            Identity Verification
-          </span>
+          />
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "12px",
-              marginTop: "10px",
+              gap: "8px",
             }}
           >
             <span
               style={{
-                fontSize: "28px",
+                fontSize: "22px",
                 fontWeight: 700,
-                color: "#111",
-                letterSpacing: "-0.02em",
+                color: "#02a95c",
+                letterSpacing: "-0.01em",
               }}
             >
-              $5.90
+              $25
             </span>
             <span
               style={{
-                fontSize: "11px",
-                fontWeight: 600,
-                letterSpacing: "0.04em",
-                color: "#10b981",
-                backgroundColor: "#ecfdf5",
-                padding: "4px 10px",
-                borderRadius: "20px",
-                textTransform: "uppercase",
+                fontSize: "13px",
+                fontWeight: 500,
+                color: "#6b7280",
               }}
             >
-              Refundable Amount
+              one-time
             </span>
           </div>
         </div>
