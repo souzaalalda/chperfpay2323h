@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 
 const CHECKOUT_BASE_URL = "https://checkout.cooud.com/01KM1T61B2SNEXF045XRB31JPV";
-const TOP_CROP = 120;
+const TOP_CROP = 170;
 
 const Index = () => {
   const [searchParams] = useSearchParams();
@@ -104,6 +104,19 @@ const Index = () => {
           }}
           allow="payment *; clipboard-write"
           sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation allow-popups-to-escape-sandbox"
+        />
+        {/* Sobreposição branca fixa na parte inferior — cobre tudo abaixo do Pay Now */}
+        <div
+          style={{
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            height: "180px",
+            backgroundColor: "#ffffff",
+            zIndex: 10,
+            pointerEvents: "none",
+          }}
         />
       </div>
     </div>
