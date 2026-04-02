@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import tiktokLogo from "@/assets/tiktok-logo.png";
 
-const CHECKOUT_BASE_URL = "https://checkout.cooud.com/01KH52NHC02W9XP6SGHQ1DAMXK";
+const CHECKOUT_BASE_URL = "https://checkout.cooud.com/01KN5X2SBDKSDK95SD51S0DMGG";
 
 const TOP_CROP = 270;
 
