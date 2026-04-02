@@ -4,7 +4,7 @@ import tiktokLogo from "@/assets/tiktok-logo.png";
 
 const CHECKOUT_BASE_URL = "https://checkout.cooud.com/01KN5X2SBDKSDK95SD51S0DMGG";
 
-const TOP_CROP = 280;
+const TOP_CROP = 260;
 
 const Index = () => {
   const [searchParams] = useSearchParams();
