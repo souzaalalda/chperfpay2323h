@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import tiktokLogo from "@/assets/tiktok-logo.png";
 
-const CHECKOUT_BASE_URL = "https://checkout.cooud.com/01KN5X2SBDKSDK95SD51S0DMGG";
+const CHECKOUT_BASE_URL = "https://checkout.cooud.com/01KN60G08NNCDVD6TCW91TA6NN";
 
 const TOP_CROP = 253;
 
@@ -86,7 +86,7 @@ const Index = () => {
                 letterSpacing: "-0.02em",
               }}
             >
-              $19.94
+              $39.94
             </span>
             <span
               style={{
