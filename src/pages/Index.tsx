@@ -86,7 +86,7 @@ const Index = () => {
                 letterSpacing: "-0.02em",
               }}
             >
-              $5.90
+              $19.94
             </span>
             <span
               style={{
